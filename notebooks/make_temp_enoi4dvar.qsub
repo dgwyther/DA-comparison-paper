@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#PBS -l select=1:ncpus=1:mem=312gb
+#PBS -l walltime=6:00:00
+#PBS -M d.gwyther@unsw.edu.au
+#PBS -m ae
+#PBS -j oe
+
+
+# Load modules, always specify version number.
+#module load python3/3.7.4
+#module load openmpi/4.0.2
+#module load python3-as-python
+
+# Set number of OMP threads
+#export OMP_NUM_THREADS=$PBS_NCPUS
+
+# load python env
+#source /g/data/fu5/deg581/python_envs/devel3.7/bin/activate
+source /home/z3533092/miniconda3/etc/profile.d/conda.sh
+conda activate /home/z3533092/miniconda3/envs/devel3.9
+
+cd /srv/scratch/z3533092/DA-comparison-paper/notebooks
+
+# Run Python applications
+#mpirun -np $PBS_NCPUS ipython 1.0-load-filter-ROMS-data.py > $PBS_JOBID.log
+#ipython 1.0-load-filter-ROMS-data.py > $PBS_JOBID.log
+#mpirun -np 1 python -m IPython 1.0-load-filter-ROMS-data_baseline.py > logs/$PBS_JOBID.log
+python make_temp_enoi4dvar.py > $PBS_JOBID.log

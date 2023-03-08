@@ -1,5 +1,8 @@
 # temporary files, log files
 *.log
+*.o[0-9]*
+*.e[0-9]*
+notebooks/.ipynb_checkpoints/
 
 # big outputs
 *.nc
